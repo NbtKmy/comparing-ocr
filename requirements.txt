@@ -11,3 +11,6 @@ openai
 
 # MistralAI
 mistralai
+
+# Gemini
+google-generativeai
