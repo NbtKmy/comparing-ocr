@@ -1,0 +1,13 @@
+# General
+jupyter
+python-dotenv
+pdf2image
+numpy<2
+pillow
+requests
+
+# OpenAI
+openai
+
+# MistralAI
+mistralai
