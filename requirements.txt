@@ -14,3 +14,9 @@ mistralai
 
 # Gemini
 google-generativeai
+
+# tesseract
+pytesseract
+
+# Levenshtein (edit) distance
+levenshtein
