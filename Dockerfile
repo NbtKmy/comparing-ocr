@@ -36,19 +36,13 @@ FROM renku/renkulab-py:3.10-0.24.0
 # Install tesseract-ocr and its German language packs
 USER root
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get install -y \
     tesseract-ocr \
+    libtesseract-dev \
     tesseract-ocr-deu \
     tesseract-ocr-deu-frak \
     tesseract-ocr-latf
 USER ${NB_USER}
-
-#RUN mamba install -y -c conda-forge \
-#    tesseract \
-#    tesseract-data-deu \
-#    tesseract-data-deu_frak \
-#    tesseract-data-lat && \
-#  mamba clean -a -y
 
 # install the python dependencies
 COPY requirements.txt environment.yml /tmp/
