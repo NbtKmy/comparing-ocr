@@ -34,21 +34,21 @@ FROM renku/renkulab-py:3.10-0.24.0
 # e.g. the following installs apt-utils and vim; each pkg on its own line, all lines
 # except for the last end with backslash '\' to continue the RUN line
 # Install tesseract-ocr and its German language packs
-#USER root
-#RUN apt-get update && \
-#    apt-get install -y --no-install-recommends \
-#    tesseract-ocr \
-#    tesseract-ocr-deu \
-#    tesseract-ocr-deu-frak \
-#    tesseract-ocr-latf
+USER root
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    tesseract-ocr \
+    tesseract-ocr-deu \
+    tesseract-ocr-deu-frak \
+    tesseract-ocr-latf
 USER ${NB_USER}
 
-RUN mamba install -y -c conda-forge \
-    tesseract \
-    tesseract-data-deu \
-    tesseract-data-deu_frak \
-    tesseract-data-lat && \
-    mamba clean -a -y
+#RUN mamba install -y -c conda-forge \
+#    tesseract \
+#    tesseract-data-deu \
+#    tesseract-data-deu_frak \
+#    tesseract-data-lat && \
+#  mamba clean -a -y
 
 # install the python dependencies
 COPY requirements.txt environment.yml /tmp/
