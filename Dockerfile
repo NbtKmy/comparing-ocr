@@ -62,4 +62,4 @@ RUN mkdir -p ${HOME}/lab/notebook
 RUN mkdir -p ${HOME}/lab/data
 COPY /notebook/*.ipynb ${HOME}/lab/notebook/
 COPY /data/* ${HOME}/lab/data/
-WoRKDIR ${HOME}/lab
+WORKDIR ${HOME}/lab
