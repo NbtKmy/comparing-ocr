@@ -36,11 +36,13 @@ FROM renku/renkulab-py:3.10-0.24.0
 # Install tesseract-ocr and its German language packs
 USER root
 RUN apt-get update
+RUN apt-get install -y wget
 RUN apt-get install -y tesseract-ocr
 RUN apt-get install -y libtesseract-dev
 RUN apt-get install -y tesseract-ocr-deu
-RUN apt-get install -y tesseract-ocr-deu-frak
-RUN apt-get install -y tesseract-ocr-latf
+RUN wget -P /usr/share/tesseract-ocr/4.00/tessdata/ https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/deu_frak.traineddata
+RUN wget -P /usr/share/tesseract-ocr/4.00/tessdata/ https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/deu_latf.traineddata
+
 USER ${NB_USER}
 
 # install the python dependencies
