@@ -35,13 +35,12 @@ FROM renku/renkulab-py:3.10-0.24.0
 # except for the last end with backslash '\' to continue the RUN line
 # Install tesseract-ocr and its German language packs
 USER root
-RUN apt-get update && \
-    apt-get install -y \
-    tesseract-ocr \
-    libtesseract-dev \
-    tesseract-ocr-deu \
-    tesseract-ocr-deu-frak \
-    tesseract-ocr-latf
+RUN apt-get update
+RUN apt-get install -y tesseract-ocr
+RUN apt-get install -y libtesseract-dev
+RUN apt-get install -y tesseract-ocr-deu
+RUN apt-get install -y tesseract-ocr-deu-frak
+RUN apt-get install -y tesseract-ocr-latf
 USER ${NB_USER}
 
 # install the python dependencies
