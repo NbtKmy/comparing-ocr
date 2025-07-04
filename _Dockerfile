@@ -6,7 +6,7 @@ FROM renku/renkulab-py:3.10-0.24.0 as builder
 # RENKU_VERSION determines the version of the renku CLI
 # that will be used in this image. To find the latest version,
 # visit https://pypi.org/project/renku/#history.
-ARG RENKU_VERSION=2.9.4
+ARG RENKU_VERSION=2.9.2
 
 # Install renku from pypi or from github if a dev version
 RUN if [ -n "$RENKU_VERSION" ] ; then \
@@ -26,6 +26,9 @@ RUN if [ -n "$RENKU_VERSION" ] ; then \
 ########################################################
 
 FROM renku/renkulab-py:3.10-0.24.0
+
+# Uncomment and adapt if code is to be included in the image
+# COPY src /code/src
 
 # Uncomment and adapt if your R or python packages require extra linux (ubuntu) software
 # e.g. the following installs apt-utils and vim; each pkg on its own line, all lines
@@ -51,15 +54,3 @@ RUN mamba env update -q -f /tmp/environment.yml && \
     rm -rf ${HOME}/.renku/venv
 
 COPY --from=builder ${HOME}/.renku/venv ${HOME}/.renku/venv
-
-USER root
-COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT [ "tini", "--", "/entrypoint.sh" ]
-CMD [ "jupyter", "server", "--ip", "0.0.0.0" ]
-
-USER $NB_USER
-RUN mkdir -p ${HOME}/lab/notebook
-RUN mkdir -p ${HOME}/lab/data
-COPY /notebook/*.ipynb ${HOME}/lab/notebook/
-COPY /data/* ${HOME}/lab/data/
-WoRKDIR ${HOME}/lab
