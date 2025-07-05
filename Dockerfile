@@ -54,12 +54,8 @@ COPY --from=builder ${HOME}/.renku/venv ${HOME}/.renku/venv
 
 USER root
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "tini", "--", "/entrypoint.sh" ]
 CMD [ "jupyter", "server", "--ip", "0.0.0.0" ]
 
 USER $NB_USER
-RUN mkdir -p ${HOME}/lab/notebook
-RUN mkdir -p ${HOME}/lab/data
-COPY /notebook/*.ipynb ${HOME}/lab/notebook/
-COPY /data/* ${HOME}/lab/data/
-WORKDIR ${HOME}/lab

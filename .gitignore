@@ -332,4 +332,5 @@ tags
 .renku.lock
 .renku/tmp
 .renku/cache
-
+# for cumstom renku setting
+renku_setting.md
