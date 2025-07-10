@@ -5,6 +5,7 @@ pdf2image
 numpy<2
 pillow
 requests
+pandas
 
 # OpenAI
 openai
@@ -13,10 +14,19 @@ openai
 mistralai
 
 # Gemini
-google-generativeai
+google-genai
 
 # tesseract
 pytesseract
 
+# Google Cloud Vision API
+google-cloud-vision
+google-auth
+
 # Levenshtein (edit) distance
 levenshtein
+
+# CER / WER
+jiwer
+
+
