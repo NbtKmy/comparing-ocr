@@ -2,10 +2,17 @@
 jupyter
 python-dotenv
 pdf2image
-numpy<2
+numpy
 pillow
 requests
 pandas
+beautifulsoup4
+markdown
+
+# Preprocessing
+opencv-python
+deskew
+
 
 # OpenAI
 openai
