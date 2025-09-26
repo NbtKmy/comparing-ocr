@@ -1,5 +1,29 @@
 # LLM als OCR software
 
+Willkommen zum Workshop!  
+In dieser Sitzung testen wir verschiedene **OCR- und HTR-Systeme** und vergleichen sie direkt in einer **RENKU-Umgebung**.  
+Besonderer Fokus liegt auf der Nutzung von **Vision-Language-Models (VLMs)** wie z. B. ChatGPT oder Mistral.
+
+
+
+## Kursziele
+
+- **OCR/HTR kennenlernen** – verstehen, wie Texterkennung mit Handschriften und Scans funktioniert  
+- **VLMs ausprobieren** – sehen, wie Modelle über eine API für OCR genutzt werden können  
+- **CER (Character Error Rate) anwenden** – eine zentrale Metrik für Genauigkeit kennenlernen  
+- **Python als Werkzeug erleben** – entdecken, dass man mit wenigen Schritten produktiv arbeiten kann  
+- **Austausch mit anderen** – erleben, dass es eine Community mit ähnlichen Interessen gibt
+
+## Ablauf (90 Minuten)
+
+1. **Einführung**: Überblick zu OCR/HTR
+2. **Demo**: RENKU-Umgebung kopieren und erste Tests
+3. **Experiment 1**: OCR mit Beispielbildern und CER-Berechnung  
+4. **Experiment 2**: Eigene Daten hochladen und ausprobieren  
+5. **Vergleich**: Ergebnisse aus Gruppen oder Einzelarbeit  
+6. **Abschluss**: Kurzes Teilen von Erfahrungen, offene Diskussion 
+
+
 ## Kurze Geschichte von OCR
 
 | Jahr | Ereignisse |
@@ -54,7 +78,11 @@ __VLMs__
 
 ## Qualitätsmessung 
 
-Um die Qualität der OCR-Software/Dienstleistung sichtbar zu machen, wird CER (Character Error Rate) häufig verwendet. 
+Um die Qualität der OCR-Software/Dienstleistung sichtbar zu machen, wird CER (Character Error Rate) häufig verwendet.
+
+Wir verwenden das Python-Paket **jiwer**, um die Genauigkeit der OCR/HTR-Ergebnisse zu berechnen.
+
+Im Fokus steht die **Character Error Rate (CER)**, zusätzlich kann auch die **Word Error Rate (WER)** berechnet werden.
 
 CER berechnet man folgendermassen:
 
@@ -85,6 +113,29 @@ __WER__
 - I ist die Anzahl der Einfügungen 
 - C ist die Anzahl der richtigen Wörter 
 - N ist die Anzahl der Wörter in der Referenz $`(N=S+D+C)`$
+
+
+## Anhang: Weitere Evaluationsmetriken
+
+Neben dem **CER (Character Error Rate)**, das wir im Kurs verwenden, gibt es weitere gebräuchliche Metriken:
+
+- **F-Score (F1-Score)**
+  Kombiniert **Precision** (Anteil der korrekt erkannten Elemente unter allen erkannten) und **Recall** (Anteil der korrekt erkannten Elemente unter allen relevanten).
+  Besonders bei der Worterkennung wird der F-Score oft verwendet.
+
+👉 Im Kurs konzentrieren wir uns auf CER, aber für weiterführende Analysen können WER und F-Score sehr hilfreich sein.
+
+Mit Python und `scikit-learn` lässt sich der F-Score leicht berechnen:
+
+```python
+from sklearn.metrics import f1_score
+
+# y_true: Liste der wahren Labels
+# y_pred: Liste der vom Modell erkannten Labels
+f1 = f1_score(y_true, y_pred, average="macro")
+print("F1-Score:", f1)
+```
+
 
 ## Weiterführende Themen
 
